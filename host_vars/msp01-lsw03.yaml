@@ -1,0 +1,20 @@
+ansible_host: 192.168.8.103
+asn: 65001
+evpn_neighbors:
+- 10.0.255.101
+- 10.0.255.102
+hostname: msp01-lsw03
+interfaces:
+- interface: ethernet1
+  ip: 10.0.10.5
+  mask: /31
+- interface: ethernet2
+  ip: 10.0.10.13
+  mask: /31
+loopback0_ip: 10.0.250.3
+loopback1_ip: 10.0.255.3
+ospf_neighbors:
+- neighbor: 10.0.10.4
+  state: present
+- neighbor: 10.0.10.12
+  state: present
