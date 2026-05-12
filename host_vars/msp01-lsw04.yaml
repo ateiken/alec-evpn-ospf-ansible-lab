@@ -19,3 +19,4 @@ ospf_neighbors:
   state: present
 - neighbor: 10.0.10.14
   state: present
+remote_as: 65002
