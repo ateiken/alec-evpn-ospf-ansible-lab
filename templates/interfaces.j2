@@ -2,8 +2,8 @@
   interface {{ intf.interface }}
     {% if 'Ethernet' in intf.interface %}
     no switchport
-    ip address {{ intf.ip }}{{ intf.mask }}
     {% endif %}
+   ip address {{ intf.ip }}{{ intf.mask }}
    mtu 9214
    no shutdown
    exit
