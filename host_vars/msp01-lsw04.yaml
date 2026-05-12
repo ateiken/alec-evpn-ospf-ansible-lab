@@ -1,8 +1,8 @@
 ansible_host: 192.168.8.104
 asn: 65001
 evpn_neighbors:
-- 10.0.255.101
-- 10.0.255.102
+- 10.0.250.101
+- 10.0.250.102
 hostname: msp01-lsw04
 interfaces:
 - interface: ethernet1
