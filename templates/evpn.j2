@@ -16,6 +16,7 @@ router bgp {{ asn }}
       neighbor evpn activate
 {% if 'lsw' in hostname %}
       network {{ loopback1_ip }}/32
+{% endfor %}
 
 interface Vxlan1
    vxlan source-interface Loopback1
