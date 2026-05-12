@@ -4,6 +4,6 @@
   gather_facts: no
 
   tasks:
-  - name: Configure Interfaces
+  - name: Configure Underlay
     eos_config:
-      src: interfaces.j2
+      src: underlay.j2
