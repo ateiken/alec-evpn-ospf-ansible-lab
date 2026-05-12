@@ -1,6 +1,6 @@
 {% for intf in interfaces %}
   interface {{ intf.interface }}
-    ip address {{ intf.ip }}/{{ intf.mask }}
+    ip address {{ intf.ip }}{{ intf.mask }}
     {% if 'Ethernet' in intf.interface %}
     no switchport
     {% endif %}
