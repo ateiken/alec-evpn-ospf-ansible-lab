@@ -85,3 +85,21 @@ for device in devices:
     with open(filename, 'w') as f:
         yaml.dump(d, f, default_flow_style=False)
     print(f"Generated {filename}")
+
+inventory = {
+    'all': {
+        'children': {
+            'leafs': { 'hosts': [] },
+            'spines': { 'hosts': [] }
+        }
+}
+}
+
+for device in devices:
+    if device.role.slug == 'leaf-switch':
+        inventory['all']['children']['eos']['children']['leafs']['hosts'][device.name] = None
+    elif device.role.slug == 'spine-switch':
+        inventory['all']['children']['eos']['children']['spines']['hosts'][device.name] = None
+
+with open('hosts.yaml', 'w') as f:
+    yaml.dump(inventory, f, default_flow_style=False)

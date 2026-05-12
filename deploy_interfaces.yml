@@ -1,0 +1,9 @@
+---
+- hosts: all
+  connection: local
+  gather_facts: no
+
+  tasks:
+  - name: Configure Interfaces
+    eos_config:
+      src: interfaces.j2

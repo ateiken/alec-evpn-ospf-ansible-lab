@@ -1,0 +1,16 @@
+---
+ansible_network_os: eos
+ansible_user: ansible
+ansible_password: automation
+ansible_connection: httpapi
+ansible_httpapi_use_ssl: true
+ansible_httpapi_validate_certs: false
+ansible_become: true
+ansible_become_method: enable
+
+ntp_servers:
+  - pool.ntp.org
+
+dns_servers:
+  - 1.1.1.1
+  - 8.8.8.8

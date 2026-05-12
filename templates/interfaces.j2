@@ -1,0 +1,20 @@
+{% for intf in interfaces %}
+  interface {{ intf.name }}
+    ip address {{ intf.ip }} {{ intf.mask }}
+    {% if 'Ethernet' in intf.interface %}
+    no switchport
+    {% endif %}
+   mtu 9214
+   no shutdown
+   exit
+{% endfor %}
+!
+interface Loopback0
+ ip address {{ loopback0_ip }}/32
+ no shutdown
+ exit
+!
+interface Loopback1
+ ip address {{ loopback1_ip }}/32
+ no shutdown
+ exit
