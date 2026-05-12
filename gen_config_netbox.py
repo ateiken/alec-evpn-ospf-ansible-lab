@@ -49,10 +49,12 @@ for device in devices:
         d['evpn_neighbors'] = spine_vteps
         device_num = int(''.join(filter(str.isdigit, device.name.split('-')[-1])))
         d['mlag_side'] = 'left' if device_num % 2 == 1 else 'right'
+        d['remote_as'] = spine_asn
     elif device.role.slug == 'spine-switch':
         d['asn'] = spine_asn
         remote_asn = leaf_asn
         d['evpn_neighbors'] = leaf_vteps
+        d['remote_as'] = leaf_asn
 
     interfaces = nb.dcim.interfaces.filter(device_id=device.id)
     for interface in interfaces:
