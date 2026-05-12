@@ -91,8 +91,8 @@ inventory = {
         'children': {
             'eos': {
                 'children': {
-                    'leafs': { 'hosts': [] },
-                    'spines': { 'hosts': [] }
+                    'leafs': { 'hosts': {} },
+                    'spines': { 'hosts': {} }
                 }
             }
         }
