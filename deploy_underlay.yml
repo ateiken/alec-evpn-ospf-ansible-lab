@@ -7,3 +7,12 @@
   - name: Configure Underlay
     eos_config:
       src: underlay.j2
+
+- hosts: leafs
+  connection: local
+  gather_facts: no
+
+  tasks:
+  - name: Configure MLAG
+    eos_config:
+      src: mlag.j2
