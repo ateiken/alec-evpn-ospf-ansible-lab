@@ -13,6 +13,7 @@ interfaces:
   mask: /31
 loopback0_ip: 10.0.250.3
 loopback1_ip: 10.0.255.3
+mlag_side: left
 ospf_neighbors:
 - neighbor: 10.0.10.4
   state: present
