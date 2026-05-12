@@ -1,0 +1,9 @@
+---
+- hosts: all
+  connection: local
+  gather_facts: no
+
+  tasks:
+  - name: Configure evpn
+    eos_config:
+      src: evpn.j2
