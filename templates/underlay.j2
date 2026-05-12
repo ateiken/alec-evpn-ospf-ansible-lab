@@ -18,3 +18,11 @@ interface Loopback1
  ip address {{ loopback1_ip }}/32
  no shutdown
  exit
+
+ router ospf 1
+  router-id {{ loopback0_ip }}
+  network {{ loopback0_ip }}/32 area 0
+  network {{ loopback1_ip }}/32 area 0
+  {% for intf in interfaces %}
+  network {{ intf.ip }}{{ intf.mask }} area 0
+  {% endfor %}
