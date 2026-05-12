@@ -89,10 +89,14 @@ for device in devices:
 inventory = {
     'all': {
         'children': {
-            'leafs': { 'hosts': [] },
-            'spines': { 'hosts': [] }
+            'eos': {
+                'children': {
+                    'leafs': { 'hosts': [] },
+                    'spines': { 'hosts': [] }
+                }
+            }
         }
-}
+    }
 }
 
 for device in devices:
