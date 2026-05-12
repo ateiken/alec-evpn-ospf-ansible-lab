@@ -1,0 +1,14 @@
+all:
+  children:
+    eos:
+      children:
+        leafs:
+          hosts:
+            msp01-lsw01: null
+            msp01-lsw02: null
+            msp01-lsw03: null
+            msp01-lsw04: null
+        spines:
+          hosts:
+            msp01-ssw01: null
+            msp01-ssw02: null
