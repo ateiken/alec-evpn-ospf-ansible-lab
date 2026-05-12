@@ -47,6 +47,8 @@ for device in devices:
         d['asn'] = leaf_asn
         remote_asn = spine_asn
         d['evpn_neighbors'] = spine_vteps
+        device_num = int(''.join(filter(str.isdigit, device.name.split('-')[-1])))
+        d['mlag_side'] = 'left' if device_num % 2 == 1 else 'right'
     elif device.role.slug == 'spine-switch':
         d['asn'] = spine_asn
         remote_asn = leaf_asn
