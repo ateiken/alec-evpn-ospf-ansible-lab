@@ -115,6 +115,23 @@ with open('hosts.yaml', 'w') as f:
 vrfs = list(nb.ipam.vrfs.all())
 vrf_list = []
 for vrf in vrfs:
+
+    vrf_prefixes = list(nb.ipam.prefixes.filter(vrf_id=vrf.id))
+    vlan_list = []
+    for prefix in vrf_prefixes:
+        if prefix.vlan:
+            network = ipaddress.ip_network(prefix.prefix)
+            gw_ip = str(list(network.hosts())[0])
+            mask = str(network.prefixlen)
+            
+            vlan_list.append({
+                'vrf': prefix.vrf.name if prefix.vrf else None,
+                'vlan': prefix.vlan.vid if prefix.vlan else None,
+                'prefix': prefix.prefix,
+                'gw_ip': gw_ip,
+                'mask': mask
+            })
+
     vrf_list.append({
         'name': vrf.name,
         'rd': vrf.rd,
