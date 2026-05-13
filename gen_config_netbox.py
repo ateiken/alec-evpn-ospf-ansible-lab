@@ -130,4 +130,15 @@ for vlan in vlans:
     vlan_list.append({
         'id': vlan.vid,
         'name': vlan.name,
-    })    
+    })
+
+# build group_vars data
+leafs_group_vars = {
+    'vrfs': vrf_list,
+    'vlans': vlan_list
+}
+
+# write to group_vars/leafs.yml
+with open('group_vars/leafs.yml', 'w') as f:
+    yaml.dump(leafs_group_vars, f, default_flow_style=False)
+print("Generated group_vars/leafs.yml")    
