@@ -123,7 +123,7 @@ for vrf in vrfs:
             network = ipaddress.ip_network(prefix.prefix)
             gw_ip = str(list(network.hosts())[0])
             mask = str(network.prefixlen)
-            
+
             vlan_list.append({
                 'vrf': prefix.vrf.name if prefix.vrf else None,
                 'vlan': prefix.vlan.vid if prefix.vlan else None,
@@ -149,19 +149,19 @@ for vrf in vrfs:
 #         'name': vlan.name,
 #     })
 
-prefixes = list(nb.ipam.prefixes.all())
-prefix_list = []
-for prefix in prefixes:
-    prefix_list.append({
-        'prefix': prefix.prefix,
-        'vrf': prefix.vrf.name if prefix.vrf else None,
-        'vlan': prefix.vlan.vid if prefix.vlan else None
-    })
+# prefixes = list(nb.ipam.prefixes.all())
+# prefix_list = []
+# for prefix in prefixes:
+#     prefix_list.append({
+#         'prefix': prefix.prefix,
+#         'vrf': prefix.vrf.name if prefix.vrf else None,
+#         'vlan': prefix.vlan.vid if prefix.vlan else None
+#     })
 
 # build group_vars data
 leafs_group_vars = {
     'vrfs': vrf_list,
-    'prefixes': prefix_list
+    'prefixes': vrf_prefixes
 }
 
 # write to group_vars/leafs.yml
