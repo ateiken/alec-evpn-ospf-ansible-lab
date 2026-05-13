@@ -129,7 +129,8 @@ for vrf in vrfs:
                 'vlan': prefix.vlan.vid if prefix.vlan else None,
                 'prefix': prefix.prefix,
                 'gw_ip': gw_ip,
-                'mask': mask
+                'mask': mask,
+                'vlans': vlan_list
             })
 
     vrf_list.append({
@@ -140,28 +141,9 @@ for vrf in vrfs:
         'l3vni': vrf.custom_fields.get('L3VNI')
     })
 
-# # query VLANs from NetBox
-# vlans = list(nb.ipam.vlans.all())
-# vlan_list = []
-# for vlan in vlans:
-#     vlan_list.append({
-#         'id': vlan.vid,
-#         'name': vlan.name,
-#     })
-
-# prefixes = list(nb.ipam.prefixes.all())
-# prefix_list = []
-# for prefix in prefixes:
-#     prefix_list.append({
-#         'prefix': prefix.prefix,
-#         'vrf': prefix.vrf.name if prefix.vrf else None,
-#         'vlan': prefix.vlan.vid if prefix.vlan else None
-#     })
-
 # build group_vars data
 leafs_group_vars = {
-    'vrfs': vrf_list,
-    'prefixes': vrf_prefixes
+    'vrfs': vrf_list
 }
 
 # write to group_vars/leafs.yml
