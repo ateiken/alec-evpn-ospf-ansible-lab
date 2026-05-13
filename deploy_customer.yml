@@ -1,0 +1,8 @@
+- hosts: leafs
+  connection: local
+  gather_facts: no
+
+  tasks:
+  - name: Configure Customer
+    eos_config:
+      src: customer.j2

@@ -1,0 +1,32 @@
+{% set l3_vni = vrf_id|int + 110000 %}
+
+vrf instance {{ vrf_name }}
+ip routing vrf {{ vrf_name }}
+
+router bgp {{ asn }}
+   vrf {{ vrf_name }}
+      rd {{ loopback0_ip }}:{{ vrf_id }}
+      route-target import evpn {{ vrf_id }}:{{ l3_vni }}
+      route-target export evpn {{ vrf_id }}:{{ l3_vni }}
+      redistribute connected
+
+interface Vxlan1
+   vxlan vrf {{ vrf_name }} vni {{ l3_vni }}
+!
+{% set l2_vni = vlan_id|int + 110000 %}
+
+vlan {{ vlan_id }}
+   name {{ vlan_name }}
+
+interface vlan {{ vlan_id }}
+   vrf {{ vrf_name }}
+   ip address virtual {{ gw_ip }}/{{ mask }}
+
+interface Vxlan1
+   vxlan vlan {{ vlan_id }} vni {{ l2_vni }}
+
+router bgp {{ asn }}
+   vlan {{ vlan_id }}
+      rd {{ asn }}:{{ l2_vni }}
+      route-target both {{ vlan_id }}:{{ l2_vni }}
+      redistribute learned

@@ -111,3 +111,24 @@ for device in devices:
 
 with open('hosts.yaml', 'w') as f:
     yaml.dump(inventory, f, default_flow_style=False)
+
+vrfs = list(nb.ipam.vrfs.all())
+vrf_list = []
+for vrf in vrfs:
+    vrf_list.append({
+        'name': vrf.name,
+        'rd': vrf.rd,
+        'import_rt': str(vrf.import_targets[0]) if vrf.import_targets else None,
+        'export_rt': str(vrf.export_targets[0]) if vrf.export_targets else None,
+        'l3vni': vrf.custom_fields.get('L3VNI')
+    })
+
+# query VLANs from NetBox
+vlans = list(nb.ipam.vlans.all())
+vlan_list = []
+for vlan in vlans:
+    vlan_list.append({
+        'id': vlan.vid,
+        'name': vlan.name,
+        'vrf': vrf.vrf.name if vlan.vrf else None
+    })    
