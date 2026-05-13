@@ -129,8 +129,7 @@ for vrf in vrfs:
                 'vlan': prefix.vlan.vid if prefix.vlan else None,
                 'prefix': prefix.prefix,
                 'gw_ip': gw_ip,
-                'mask': mask,
-                'vlans': vlan_list
+                'mask': mask, 
             })
 
     vrf_list.append({
@@ -139,6 +138,7 @@ for vrf in vrfs:
         'import_rt': str(vrf.import_targets[0]) if vrf.import_targets else None,
         'export_rt': str(vrf.export_targets[0]) if vrf.export_targets else None,
         'l3vni': vrf.custom_fields.get('L3VNI')
+        'vlans': vlan_list
     })
 
 # build group_vars data
