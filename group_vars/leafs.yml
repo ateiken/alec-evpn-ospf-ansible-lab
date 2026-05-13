@@ -4,6 +4,6 @@ vlans:
 vrfs:
 - export_rt: 65001:1001
   import_rt: 65001:1001
-  l3vni: 1:100001
+  l3vni: 100001
   name: CUST_ACME
   rd: 65001:1001
