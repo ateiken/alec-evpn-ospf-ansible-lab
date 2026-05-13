@@ -130,5 +130,4 @@ for vlan in vlans:
     vlan_list.append({
         'id': vlan.vid,
         'name': vlan.name,
-        'vrf': vrf.vrf.name if vlan.vrf else None
     })    
