@@ -18,20 +18,20 @@ interface Vxlan1
 {% for vlan in vlans %}
 {% set l2_vni = id|int + 110000 %}
 
-vlan {{ id }}
-   name {{ name }}
+vlan {{ vlan.id }}
+   name {{ vlan.name }}
 
-interface vlan {{ vlan_id }}
-   vrf {{ vrf_name }}
+interface vlan {{ vlan.id }}
+   vrf {{ vrf.name }}
    ip address virtual {{ gw_ip }}/{{ mask }}
 
 interface Vxlan1
-   vxlan vlan {{ vlan_id }} vni {{ l2_vni }}
+   vxlan vlan {{ vlan.id }} vni {{ l2_vni }}
 
 router bgp {{ asn }}
-   vlan {{ vlan_id }}
+   vlan {{ vlan.id }}
       rd {{ asn }}:{{ l2_vni }}
-      route-target both {{ vlan_id }}:{{ l2_vni }}
+      route-target both {{ vlan.id }}:{{ l2_vni }}
       redistribute learned
 {% endfor %}
 #}
