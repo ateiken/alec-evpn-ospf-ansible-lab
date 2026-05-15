@@ -127,6 +127,7 @@ for vrf in vrfs:
             vlan_list.append({
                 'vrf': prefix.vrf.name if prefix.vrf else None,
                 'vlan': prefix.vlan.vid if prefix.vlan else None,
+                'name': prefix.vlan.name if prefix.vlan.name else None,
                 'prefix': prefix.prefix,
                 'gw_ip': gw_ip,
                 'mask': mask 
