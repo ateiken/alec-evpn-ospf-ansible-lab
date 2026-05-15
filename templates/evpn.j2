@@ -7,6 +7,7 @@ router bgp {{ asn }}
    neighbor evpn ebgp-multihop 3
    neighbor evpn send-community extended
    neighbor evpn maximum-routes 12000
+   neighbor evpn allowas-in
    no neighbor evpn allowas-in
 {% for item in evpn_neighbors %}
    neighbor {{ item }} peer group evpn
@@ -15,7 +16,6 @@ router bgp {{ asn }}
    !
    address-family evpn
       neighbor evpn activate
-      neighbor evpn allowas-in
 {% if 'lsw' in hostname %}
       network {{ loopback1_ip }}/32
 {% endif %}
