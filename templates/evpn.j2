@@ -8,7 +8,6 @@ router bgp {{ asn }}
    neighbor evpn send-community extended
    neighbor evpn maximum-routes 12000
    neighbor evpn allowas-in
-   no neighbor evpn allowas-in
 {% for item in evpn_neighbors %}
    neighbor {{ item }} peer group evpn
    neighbor {{ item }} remote-as {{ remote_as }}
