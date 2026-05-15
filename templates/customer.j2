@@ -14,9 +14,9 @@ interface Vxlan1
 !
 {% endfor %}
 
-{# 
+ 
 {% for vlan in vlans %}
-{% set l2_vni = id|int + 110000 %}
+{% set l2_vni = vlan.id|int + 110000 %}
 
 vlan {{ vlan.id }}
    name {{ vlan.name }}
@@ -34,4 +34,3 @@ router bgp {{ asn }}
       route-target both {{ vlan.id }}:{{ l2_vni }}
       redistribute learned
 {% endfor %}
-#}
