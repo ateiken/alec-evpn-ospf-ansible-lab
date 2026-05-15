@@ -20,7 +20,7 @@ vlan {{ vlan.vlan }}
 
 interface vlan {{ vlan.vlan }}
    vrf {{ vrf.name }}
-   ip address virtual {{ gw_ip }}/{{ mask }}
+   ip address virtual {{ vlan.gw_ip }}/{{ vlan.mask }}
 
 interface Vxlan1
    vxlan vlan {{ vlan.vlan }} vni {{ l2_vni }}
