@@ -9,8 +9,8 @@
       msg: "{{ lookup('template', 'templates/customer.j2') }}"
   
   - name: Test vlan
-  eos_config:
-    lines:
+    eos_config:
+     lines:
       - "name ACME_DATA"
     parents:
       - "vlan 100"
