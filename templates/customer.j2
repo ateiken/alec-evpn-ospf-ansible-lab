@@ -14,11 +14,14 @@ exit
 {% set l2_vni = vlan.vlan|int + 110000 %}
 vlan {{ vlan.vlan }}
    name {{ vlan.name }}
-interface vlan {{ vlan.vlan }}
+exit
+interface Vlan{{ vlan.vlan }}
    vrf {{ vrf.name }}
    ip address virtual {{ vlan.gw_ip }}/{{ vlan.mask }}
+exit
 interface Vxlan1
    vxlan vlan {{ vlan.vlan }} vni {{ l2_vni }}
+exit
 router bgp {{ asn }}
    vlan {{ vlan.vlan }}
       rd {{ asn }}:{{ l2_vni }}
