@@ -8,7 +8,7 @@
     debug:
       msg: "{{ lookup('template', 'templates/customer.j2') }}"
   
-  - name: Test vlan
+- name: Test vlan
   eos_config:
     lines:
       - "name ACME_DATA"
