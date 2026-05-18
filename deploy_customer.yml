@@ -5,7 +5,7 @@
   tasks:
   - name: Debug rendered template
     debug:
-    msg: "{{ lookup('template', 'templates/customer.j2') }}"
+      msg: "{{ lookup('template', 'templates/customer.j2') }}"
   
   - name: Configure Customer
     eos_config:
