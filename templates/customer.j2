@@ -1,30 +1,23 @@
 {% for vrf in vrfs %}
 vrf instance {{ vrf.name }}
 ip routing vrf {{ vrf.name }}
-
 router bgp {{ asn }}
    vrf {{ vrf.name }}
       rd {{ vrf.rd }}
-      route-target import evpn {{ vrf.import_rt}}
-      route-target export evpn {{ vrf.export_rt}}
+      route-target import evpn {{ vrf.import_rt }}
+      route-target export evpn {{ vrf.export_rt }}
       redistribute connected
-
 interface Vxlan1
    vxlan vrf {{ vrf.name }} vni {{ vrf.l3vni }}
-!
 {% for vlan in vrf.vlans %}
 {% set l2_vni = vlan.vlan|int + 110000 %}
-
 vlan {{ vlan.vlan }}
    name {{ vlan.name }}
-
-interface Vlan {{ vlan.vlan }}
+interface Vlan{{ vlan.vlan }}
    vrf {{ vrf.name }}
    ip address virtual {{ vlan.gw_ip }}/{{ vlan.mask }}
-
 interface Vxlan1
    vxlan vlan {{ vlan.vlan }} vni {{ l2_vni }}
-
 router bgp {{ asn }}
    vlan {{ vlan.vlan }}
       rd {{ asn }}:{{ l2_vni }}
