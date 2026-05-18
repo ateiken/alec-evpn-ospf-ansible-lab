@@ -23,3 +23,19 @@
         - "router bgp {{ asn }}"
         - "vrf {{ item.name }}"
     loop: "{{ vrfs }}"
+
+  - name: Configure Vxlan VRF mapping
+    eos_config:
+      lines:
+        - "vxlan vrf {{ item.name }} vni {{ item.l3vni }}"
+      parents:
+        - "interface Vxlan1"
+    loop: "{{ vrfs }}"
+
+  - name: Configure VLANs
+    eos_config:
+      lines:
+        - "name {{ item.1.name }}"
+      parents:
+        - "vlan {{ item.1.vlan }}"
+    loop: "{{ vrfs | subelements('vlans') }}"
