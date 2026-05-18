@@ -2,18 +2,17 @@
 - hosts: leafs
   connection: local
   gather_facts: no
-
   tasks:
   - name: Debug rendered template
     debug:
       msg: "{{ lookup('template', 'templates/customer.j2') }}"
-  
+
   - name: Test vlan
     eos_config:
-     lines:
-      - "name ACME_DATA"
-    parents:
-      - "vlan 100"
+      lines:
+        - "name ACME_DATA"
+      parents:
+        - "vlan 100"
 
   
   # - name: Configure Customer
