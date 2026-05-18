@@ -18,7 +18,7 @@ interface Vxlan1
 vlan {{ vlan.vlan }}
    name {{ vlan.name }}
 
-interface vlan {{ vlan.vlan }}
+interface Vlan {{ vlan.vlan }}
    vrf {{ vrf.name }}
    ip address virtual {{ vlan.gw_ip }}/{{ vlan.mask }}
 
