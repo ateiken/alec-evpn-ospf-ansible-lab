@@ -7,6 +7,15 @@
   - name: Debug rendered template
     debug:
       msg: "{{ lookup('template', 'templates/customer.j2') }}"
-  - name: Configure Customer
-    eos_config:
-      src: customer.j2
+  
+  - name: Test vlan
+  eos_config:
+    lines:
+      - "name ACME_DATA"
+    parents:
+      - "vlan 100"
+
+  
+  # - name: Configure Customer
+  #   eos_config:
+  #     src: customer.j2
