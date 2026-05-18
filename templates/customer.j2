@@ -10,8 +10,9 @@ router bgp {{ asn }}
       redistribute connected
 
 interface Vxlan1
-   vxlan vrf {{ vrf.name }} vni {{ vrf.l3vni }}
-!
+   vxlan
+ vrf {{ vrf.name }} vni {{ vrf.l3vni }}
+
 {% for vlan in vrf.vlans %}
 {% set l2_vni = vlan.vlan|int + 110000 %}
 
