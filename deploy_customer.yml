@@ -3,7 +3,23 @@
   connection: local
   gather_facts: no
   tasks:
-  - name: Configure Customer
+
+  - name: Configure VRF instances
     eos_config:
-      src: customer.j2
-      match: none
+      lines:
+        - "ip routing vrf {{ item.name }}"
+      parents:
+        - "vrf instance {{ item.name }}"
+    loop: "{{ vrfs }}"
+
+  - name: Configure BGP VRF
+    eos_config:
+      lines:
+        - "rd {{ item.rd }}"
+        - "route-target import evpn {{ item.import_rt }}"
+        - "route-target export evpn {{ item.export_rt }}"
+        - "redistribute connected"
+      parents:
+        - "router bgp {{ asn }}"
+        - "vrf {{ item.name }}"
+    loop: "{{ vrfs }}"
