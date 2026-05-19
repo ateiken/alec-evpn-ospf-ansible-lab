@@ -27,7 +27,5 @@ router bgp {{ asn }}
       rd {{ asn }}:{{ l2_vni }}
       route-target both {{ vlan.vlan }}:{{ l2_vni }}
       redistribute learned
-{#
-#}
 {% endfor %}
 {% endfor %}
