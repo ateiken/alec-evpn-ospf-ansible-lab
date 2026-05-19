@@ -2,40 +2,8 @@
 - hosts: leafs
   connection: local
   gather_facts: no
+
   tasks:
-
-  - name: Configure VRF instances
+  - name: Configure Customer
     eos_config:
-      lines:
-        - "ip routing vrf {{ item.name }}"
-      parents:
-        - "vrf instance {{ item.name }}"
-    loop: "{{ vrfs }}"
-
-  - name: Configure BGP VRF
-    eos_config:
-      lines:
-        - "rd {{ item.rd }}"
-        - "route-target import evpn {{ item.import_rt }}"
-        - "route-target export evpn {{ item.export_rt }}"
-        - "redistribute connected"
-      parents:
-        - "router bgp {{ asn }}"
-        - "vrf {{ item.name }}"
-    loop: "{{ vrfs }}"
-
-  - name: Configure Vxlan VRF mapping
-    eos_config:
-      lines:
-        - "vxlan vrf {{ item.name }} vni {{ item.l3vni }}"
-      parents:
-        - "interface Vxlan1"
-    loop: "{{ vrfs }}"
-
-  - name: Configure VLANs
-    eos_config:
-      lines:
-        - "name {{ item.1.name }}"
-      parents:
-        - "vlan {{ item.1.vlan }}"
-    loop: "{{ vrfs | subelements('vlans') }}"
+      src: customer.j2
