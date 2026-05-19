@@ -19,3 +19,7 @@
   - name: Configure Customer Vxlan
     eos_config:
       src: customer_vxlan.j2
+      
+  - name: Configure Customer BGP
+    eos_config:
+      src: customer_bgp.j2
