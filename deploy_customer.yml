@@ -4,6 +4,10 @@
   gather_facts: no
 
   tasks:
-  - name: Configure Customer
+  - name: Configure Customer Vrf
     eos_config:
-      src: customer.j2
+      src: vrf.j2
+
+  - name: Configure Customer Vlans
+    eos_config:
+      src: vlans.j2
