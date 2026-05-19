@@ -4,9 +4,6 @@
 vlan {{ vlan.vlan }}
    name {{ vlan.name }}
 
-interface Vxlan1
-   vxlan vlan {{ vlan.vlan }} vni {{ l2_vni }}
-
 router bgp {{ asn }}
    vlan {{ vlan.vlan }}
       rd {{ asn }}:{{ l2_vni }}

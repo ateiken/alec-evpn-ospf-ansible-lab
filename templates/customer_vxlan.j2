@@ -1,0 +1,7 @@
+{% for vrf in vrfs %}
+{% for vlan in vrf.vlans %}
+{% set l2_vni = vlan.vlan|int + 110000 %}
+interface Vxlan1
+   vxlan vlan {{ vlan.vlan }} vni {{ l2_vni }}
+{% endfor %}
+{% endfor %}
