@@ -6,7 +6,7 @@
   tasks:
   - name: Configure Customer Vrf
     eos_config:
-      src: vrf.j2
+      src: customer_vrf.j2
 
   - name: Configure Customer Vlans
     eos_config:
@@ -14,8 +14,8 @@
 
   - name: Configure Customer Svis
     eos_config:
-      src: svi.j2
-      
+      src: customer_svi.j2
+
   - name: Configure Customer Vxlan
     eos_config:
       src: customer_vxlan.j2
