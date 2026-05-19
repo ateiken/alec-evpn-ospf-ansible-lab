@@ -1,0 +1,7 @@
+{% for vrf in vrfs %}
+{% for vlan in vrf.vlans %}
+interface Vlan{{ vlan.vlan }}
+   vrf {{ vrf.name }}
+   ip address virtual {{ vlan.gw_ip }}/{{ vlan.mask }}
+{% endfor %}
+{% endfor %}

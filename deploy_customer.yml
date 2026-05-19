@@ -11,3 +11,7 @@
   - name: Configure Customer Vlans
     eos_config:
       src: vlans.j2
+      
+  - name: Configure Customer Svis
+    eos_config:
+      src: svi.j2
