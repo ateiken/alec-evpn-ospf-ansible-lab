@@ -7,13 +7,14 @@ router bgp {{ asn }}
       route-target import evpn {{ vrf.import_rt }}
       route-target export evpn {{ vrf.export_rt }}
       redistribute connected
-{#
+
 interface Vxlan1
    vxlan vrf {{ vrf.name }} vni {{ vrf.l3vni }}
 {% for vlan in vrf.vlans %}
 {% set l2_vni = vlan.vlan|int + 110000 %}
 vlan {{ vlan.vlan }}
    name {{ vlan.name }}
+{#
 interface Vlan{{ vlan.vlan }}
    vrf {{ vrf.name }}
    ip address virtual {{ vlan.gw_ip }}/{{ vlan.mask }}
@@ -25,5 +26,5 @@ router bgp {{ asn }}
       route-target both {{ vlan.vlan }}:{{ l2_vni }}
       redistribute learned
 {% endfor %}
-#}
 {% endfor %}
+#}
