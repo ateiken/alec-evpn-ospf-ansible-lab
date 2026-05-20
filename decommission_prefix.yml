@@ -2,7 +2,10 @@
 - hosts: leafs
   connection: local
   gather_facts: no
-
+  
+  vars_files:
+    - group_vars/decommission.yml
+  
   tasks:    
     - name: Check decommission list
       debug:
