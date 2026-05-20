@@ -150,4 +150,24 @@ leafs_group_vars = {
 # write to group_vars/leafs.yml
 with open('group_vars/leafs.yml', 'w') as f:
     yaml.dump(leafs_group_vars, f, default_flow_style=False)
-print("Generated group_vars/leafs.yml")    
+print("Generated group_vars/leafs.yml")
+
+# decom prefix
+deprecated_prefixes = list(nb.ipam.prefixes.filter(status='deprecated'))
+decommission_vlan_list = []
+
+for prefix in deprecated_prefixes:
+    if prefix.vlan and prefix.vrf:
+        l2vni = prefix.vlan.vid + 110000
+        decommission_vlan_list.append({
+            'vlan': prefix.vlan.vid,
+            'name': prefix.vlan.name,
+            'vrf': prefix.vrf.name,
+            'l2vni': l2vni,
+            'prefix': prefix.prefix
+        })
+
+decommission_vars = {'decommission_vlans': decommission_vlan_list}
+with open('group_vars/decommission.yml', 'w') as f:
+    yaml.dump(decommission_vars, f, default_flow_style=False)
+print("Generated group_vars/decommission.yml")
