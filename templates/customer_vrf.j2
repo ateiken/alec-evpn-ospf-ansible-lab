@@ -1,12 +1,4 @@
 {% for vrf in vrfs %}
 vrf instance {{ vrf.name }}
 ip routing vrf {{ vrf.name }}
-router bgp {{ asn }}
-   vrf {{ vrf.name }}
-      rd {{ vrf.rd }}
-      route-target import evpn {{ vrf.import_rt }}
-      route-target export evpn {{ vrf.export_rt }}
-      redistribute connected
-
-
 {% endfor %}

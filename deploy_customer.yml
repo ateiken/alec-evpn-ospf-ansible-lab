@@ -24,6 +24,11 @@
     eos_config:
       src: customer_l2vxlan.j2
 
-  - name: Configure Customer BGP
+  - name: Configure Customer L2 BGP
     eos_config:
-      src: customer_bgp.j2
+      src: customer_l2bgp.j2
+
+  - name: Configure Customer L3 BGP
+    eos_config:
+      src: customer_l3bgp.j2
+  
