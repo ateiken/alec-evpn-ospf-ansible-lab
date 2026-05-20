@@ -2,7 +2,11 @@
 router bgp {{ asn }}
    vrf {{ vrf.name }}
       rd {{ vrf.rd }}
-      route-target import evpn {{ vrf.import_rt }}
-      route-target export evpn {{ vrf.export_rt }}
+      {% for rt in vrf.import_rt %}
+      route-target import evpn {{ rt }}
+      {% endfor %}
+      {% for rt in vrf.export_rt %}
+      route-target export evpn {{ rt }}
+      {% endfor %}
       redistribute connected
 {% endfor %}

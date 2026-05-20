@@ -136,8 +136,8 @@ for vrf in vrfs:
     vrf_list.append({
         'name': vrf.name,
         'rd': vrf.rd,
-        'import_rt': str(vrf.import_targets[0]) if vrf.import_targets else None,
-        'export_rt': str(vrf.export_targets[0]) if vrf.export_targets else None,
+        'import_rt': [str(rt) for rt in vrf.import_targets] if vrf.import_targets else [],
+        'export_rt': [str(rt) for rt in vrf.export_targets] if vrf.export_targets else [],
         'l3vni': vrf.custom_fields.get('L3VNI'),
         'vlans': vlan_list
     })
