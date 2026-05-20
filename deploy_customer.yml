@@ -8,6 +8,10 @@
     eos_config:
       src: customer_vrf.j2
 
+  - name: Configure Customer L3 VxLAN
+    eos_config:
+      src: customer_l3vxlan.j2
+
   - name: Configure Customer Vlans
     eos_config:
       src: customer_vlans.j2
@@ -16,9 +20,9 @@
     eos_config:
       src: customer_svi.j2
 
-  - name: Configure Customer Vxlan
+  - name: Configure Customer L2 VxLAN
     eos_config:
-      src: customer_vxlan.j2
+      src: customer_l2vxlan.j2
 
   - name: Configure Customer BGP
     eos_config:

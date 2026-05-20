@@ -8,6 +8,5 @@ router bgp {{ asn }}
       route-target export evpn {{ vrf.export_rt }}
       redistribute connected
 
-interface Vxlan1
-   vxlan vrf {{ vrf.name }} vni {{ vrf.l3vni }}
+
 {% endfor %}

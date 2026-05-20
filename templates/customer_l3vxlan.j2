@@ -1,0 +1,4 @@
+{% for vrf in vrfs %}
+interface Vxlan1
+   vxlan vrf {{ vrf.name }} vni {{ vrf.l3vni }}
+{% endfor %}
