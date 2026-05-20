@@ -11,3 +11,35 @@
       debug:
         msg: "Decommissioning {{ decommission_vlans | length }} VLANs"
       when: decommission_vlans | length > 0
+
+    - name: Remove BGP VLAN config
+      eos_config:
+        lines:
+          - "no vlan {{ item.vlan }}"
+        parents:
+          - "router bgp {{ asn }}"
+      loop: "{{ decommission_vlans }}"
+      when: decommission_vlans | length > 0
+
+    - name: Remove Vxlan VLAN mapping
+      eos_config:
+        lines:
+          - "no vxlan vlan {{ item.vlan }} vni {{ item.l2vni }}"
+        parents:
+          - "interface Vxlan1"
+      loop: "{{ decommission_vlans }}"
+      when: decommission_vlans | length > 0
+
+    - name: Remove SVI interface
+      eos_config:
+        lines:
+          - "no interface Vlan{{ item.vlan }}"
+      loop: "{{ decommission_vlans }}"
+      when: decommission_vlans | length > 0
+
+    - name: Remove VLAN from database
+      eos_config:
+        lines:
+          - "no vlan {{ item.vlan }}"
+      loop: "{{ decommission_vlans }}"
+      when: decommission_vlans | length > 0
