@@ -1,0 +1,10 @@
+---
+- hosts: leafs
+  connection: local
+  gather_facts: no
+
+  tasks:    
+    - name: Check decommission list
+      debug:
+        msg: "Decommissioning {{ decommission_vlans | length }} VLANs"
+      when: decommission_vlans | length > 0
