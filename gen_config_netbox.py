@@ -116,7 +116,7 @@ vrfs = list(nb.ipam.vrfs.all())
 vrf_list = []
 for vrf in vrfs:
 
-    vrf_prefixes = list(nb.ipam.prefixes.filter(vrf_id=vrf.id))
+    vrf_prefixes = list(nb.ipam.prefixes.filter(vrf_id=vrf.id, status='active'))
     vlan_list = []
     for prefix in vrf_prefixes:
         if prefix.vlan:
